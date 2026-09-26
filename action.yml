@@ -24,4 +24,4 @@ runs:
   steps:
     - name: Use SSH - mkdir
       shell: bash
-      run: ssh -i .ssh/${{ inputs.key-name }} -p ${{ inputs.port }} -o StrictHostKeyChecking=no ${{ inputs.user }}@${{ inputs.host }} "mkdir -p ${{ inputs.dir }}"
+      run: ssh -i .ssh/${{ inputs.key-name }} -p ${{ inputs.port }} -o StrictHostKeyChecking=no -o ConnectTimeout=20 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 ${{ inputs.user }}@${{ inputs.host }} "mkdir -p ${{ inputs.dir }}"
